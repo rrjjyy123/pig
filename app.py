@@ -154,7 +154,7 @@ with col_m1:
         lr = LinearRegression()
         lr.fit(train_input, train_target)
         score = lr.score(test_input, test_target)
-        st.write(f"**점수: {score*100:.1f}점**")
+        st.write(f"**점수: {score*100:.5f}점**")
         if score < 0.8:
             st.warning("점수가 높지 않아요... 좀 더 똑똑한 방법이 필요해요! 🤔")
             
@@ -186,7 +186,7 @@ with col_m2:
         st.session_state['model_poly'] = lr_poly
         st.session_state['poly_features'] = poly
         
-        st.success(f"**점수: {score_poly*100:.1f}점!** 🎉")
+        st.success(f"**점수: {score_poly*100:.5f}점!** 🎉")
         st.balloons()
         st.markdown("와우! 점수가 훨씬 높아졌어요. 이제 돼지들의 집을 더 정확하게 감정할 수 있겠어요.")
         
