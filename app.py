@@ -296,3 +296,10 @@ with st.expander("🛠️ 보너스: 나만의 튼튼한 집 설계하기"):
                 st.error("아이고... 바람에 날아가버렸어요. 더 튼튼한 재료를 써보세요! 🍃")
         else:
             st.warning("먼저 '모델 훈련 (특성 공학 적용)'을 해주세요.")
+
+st.divider()
+col_link1, col_link2 = st.columns(2)
+with col_link1:
+    st.link_button("📂 소스파일 다운 (구글 드라이브)", "https://drive.google.com/drive/folders/1ycRgMS3bZprEy85dsCpCOGNApoWN5TQ8")
+with col_link2:
+    st.link_button("🐍 파이썬 코딩하러 가기 (구글 코랩)", "https://colab.research.google.com/drive/1Y86jVA0mWvn1db2OBYQCGSqyk2zUeq4c?usp=sharing")
