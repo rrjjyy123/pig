@@ -11,10 +11,53 @@ import os
 # --- 페이지 기본 설정 ---
 st.set_page_config(page_title="아기 돼지 삼형제 AI", layout="wide", page_icon="🐷")
 
-# CSS 스타일 적용 (예쁜 디자인)
+
+# CSS 스타일 적용 (블록 코딩 스타일)
 st.markdown("""
 <style>
+    /* 전체 폰트 및 배경 */
+    .block-container {
+        padding-top: 2rem;
+    }
+    
+    /* 블록 공통 스타일 */
+    .code-block {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        color: white;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* 데이터 블록 (파랑) */
+    .block-data {
+        background-color: #4C97FF; /* Scratch Motion Blue */
+        border: 2px solid #3373CC;
+    }
+    
+    /* 인공지능/연산 블록 (초록) */
+    .block-ai {
+        background-color: #59C059; /* Scratch Operator Green */
+        border: 2px solid #389438;
+    }
+    
+    /* 이벤트/실행 블록 (노랑) */
+    .block-run {
+        background-color: #FFBF00; /* Scratch Events Yellow */
+        border: 2px solid #CC9900;
+        color: #333 !important;
+    }
+    
+    /* 제어/결과 블록 (오렌지) */
+    .block-control {
+        background-color: #FFAB19; /* Scratch Control Orange */
+        border: 2px solid #CF8B17;
+    }
+
+    /* 제목 스타일 */
     .main-header {
+        font-family: 'Ownglyph_ci', sans-serif; /* 귀여운 폰트 가정 */
         font-size: 3rem;
         color: #FF5733;
         text-align: center;
@@ -32,16 +75,21 @@ st.markdown("""
 
 # --- 인트로 ---
 st.markdown('<div class="main-header">🐷  슈퍼 태풍 ‘울프(Wolf)를 이겨라!</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">아기 돼지 삼형제의 후손들과 함께 튼튼한 집을 설계하는 AI를 만들어보아요!</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-header">아기 돼지 삼형제와 함께하는 <b>블록 코딩 AI</b> 만들기</div>', unsafe_allow_html=True)
 
-st.info("📢 목표: 슈퍼 태풍 ‘울프(Wolf)를 견딜 수 있는 튼튼한 집을 찾아라!")
+st.info("📢 목표: 블록을 조립해서 슈퍼 태풍 ‘울프(Wolf)를 견딜 수 있는 인공지능 집을 만들어보세요!")
 
 # 사이드바
-st.sidebar.header("🚀 프로젝트 단계")
+st.sidebar.header("🧩 AI 블록 조립소")
 
 # --- Step 1: Ready! ---
-st.header("Step 1. Ready! 데이터 준비하고 전처리 하기")
-st.markdown("인공지능을 가르치려면 먼저 **공부할 재료(데이터)**가 필요해요. 건축 자재들의 정보를 살펴봅시다.")
+st.header("Step 1. Ready! 데이터 블록 준비하기")
+st.markdown("""
+<div class="code-block block-data">
+    🧱 <b>[데이터 불러오기]</b> 블록<br>
+    <small>건축 자재 데이터(csv)를 가져와서 '공부할 준비'를 합니다.</small>
+</div>
+""", unsafe_allow_html=True)
 
 # 1. 데이터 불러오기
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -77,7 +125,13 @@ print(df.head(10))
         """, language='python')
 
     # 2. 데이터 시각화
-    st.markdown("### 👀 눈으로 확인하기 (3D 그래프)")
+    st.markdown("""
+    <div class="code-block block-data">
+        👀 <b>[데이터 확인하기]</b> 블록<br>
+        <small>데이터가 어떻게 생겼는지 3차원 그래프로 확인합니다.</small>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("마우스로 그래프를 돌려보세요! 밀도와 두께가 커지면 버팀 강도는 어떻게 변하나요?")
     
     fig = px.scatter_3d(df, x='density', y='thickness', z='wind_resistance',
@@ -86,7 +140,7 @@ print(df.head(10))
                         color_continuous_scale=px.colors.sequential.Viridis)
     st.plotly_chart(fig, use_container_width=True)
     
-    with st.expander("📜 [소스 코드] 데이터 시각화하기"):
+    with st.expander("🔍 블록 속 내용 보기 (Python 코드)"):
         st.code("""
 import matplotlib.pyplot as plt
 
@@ -102,8 +156,12 @@ plt.show()
         """, language='python')
 
     # 3. 데이터 전처리 (Train/Test Split)
-    st.markdown("### ✂️ 데이터 나누기 (훈련용 vs 시험용)")
-    st.markdown("AI에게 모든 데이터를 다 보여주면 안 돼요. 나중에 잘 배웠는지 시험 보기 위해 일부는 남겨둡니다.")
+    st.markdown("""
+    <div class="code-block block-data">
+        ✂️ <b>[데이터 나누기]</b> 블록<br>
+        <small>전체 데이터를 <b>공부용(Train)</b>과 <b>시험용(Test)</b>으로 나눕니다.</small>
+    </div>
+    """, unsafe_allow_html=True)
     
     material_full = df[['density', 'thickness']].to_numpy()
     material_strength = df['wind_resistance'].to_numpy()
@@ -115,7 +173,7 @@ plt.show()
     st.write(f"- **훈련 데이터(공부용)**: {train_input.shape[0]}개")
     st.write(f"- **테스트 데이터(시험용)**: {test_input.shape[0]}개")
     
-    with st.expander("📜 [소스 코드] 데이터 전처리하기"):
+    with st.expander("🔍 블록 속 내용 보기 (Python 코드)"):
         st.code("""
 from sklearn.model_selection import train_test_split
 
@@ -137,8 +195,8 @@ except FileNotFoundError:
 st.divider()
 
 # --- Step 2: Make! ---
-st.header("Step 2. Make! 인공지능 모델 만들기")
-st.markdown("이제 AI에게 '밀도와 두께를 알면 버팀 강도를 맞추는 법'을 가르쳐봅시다.")
+st.header("Step 2. Make! 인공지능 블록 조립하기")
+st.markdown("AI가 공부하는 방식을 선택해서 **학습 블록**을 실행해봅시다.")
 
 if 'model_poly' not in st.session_state:
     st.session_state['model_poly'] = None
@@ -148,17 +206,22 @@ col_m1, col_m2 = st.columns(2)
 
 # 모델 1: 단순 선형 회귀
 with col_m1:
-    st.subheader("선형 회귀 모델 훈련하기1 - 2개의 특성으로 모델 훈련")
-    st.markdown("밀도와 두께, 2가지 특성을 그대로 사용하여 학습합니다.")
-    if st.button("모델 훈련 (기본)"):
+    st.markdown("""
+    <div class="code-block block-ai">
+        🤖 <b>[기본 AI]</b> 만들기<br>
+        <small>밀도와 두께만 가지고 단순하게 생각합니다.</small>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    if st.button("▶️ 기본 학습 블록 실행"):
         lr = LinearRegression()
         lr.fit(train_input, train_target)
         score = lr.score(test_input, test_target)
         st.write(f"**점수: {score*100:.5f}점**")
         if score < 0.8:
-            st.warning("점수가 높지 않아요... 좀 더 똑똑한 방법이 필요해요! 🤔")
+            st.warning("음... 점수가 좀 낮네요. 더 똑똑한 블록이 필요해요!")
             
-    with st.expander("📜 [소스 코드] 선형 회귀"):
+    with st.expander("🔍 블록 속 내용 보기 (Python 코드)"):
         st.code("""
 from sklearn.linear_model import LinearRegression
 lr = LinearRegression()
@@ -168,10 +231,14 @@ print(lr.score(test_input, test_target))
 
 # 모델 2: 선형 회귀 (특성 공학)
 with col_m2:
-    st.subheader("선형 회귀 모델 훈련하기2 - 특성 공학을 사용하여 모델 훈련")
-    st.markdown("특성 공학(PolynomialFeatures)을 사용하여 데이터의 특징을 확장해 학습합니다.")
+    st.markdown("""
+    <div class="code-block block-ai">
+        🧠 <b>[슈퍼 AI]</b> 만들기 (특성 공학)<br>
+        <small>데이터를 응용(제곱, 서로 곱하기)해서 더 깊게 생각합니다!</small>
+    </div>
+    """, unsafe_allow_html=True)
     
-    if st.button("모델 훈련 (특성 공학 적용)", type="primary"):
+    if st.button("▶️ 슈퍼 학습 블록 실행", type="primary"):
         # 특성 공학
         poly = PolynomialFeatures(degree=3, include_bias=False)
         poly.fit(train_input)
@@ -188,9 +255,9 @@ with col_m2:
         
         st.success(f"**점수: {score_poly*100:.5f}점!** 🎉")
         st.balloons()
-        st.markdown("와우! 점수가 훨씬 높아졌어요. 이제 돼지들의 집을 더 정확하게 감정할 수 있겠어요.")
+        st.markdown("대단해요! 이제 **예측 블록**을 사용할 준비가 되었어요.")
         
-    with st.expander("📜 [소스 코드] 특성 공학을 사용한 선형 회귀"):
+    with st.expander("🔍 블록 속 내용 보기 (Python 코드)"):
         st.code("""
 from sklearn.preprocessing import PolynomialFeatures
 
@@ -207,13 +274,18 @@ print(lr.score(test_poly, test_target))
 st.divider()
 
 # --- Step 3: Predict! ---
-st.header("Step 3. Predict! 슈퍼 태풍 ‘울프(Wolf)를 이겨라")
+st.header("Step 3. Predict! 예측 블록 실행하기")
+
+st.markdown("""
+<div class="code-block block-run">
+    🌪️ <b>태풍 '울프' 시뮬레이션</b> 블록<br>
+    <small>완성된 AI 모델을 사용하여 80m/s 태풍을 견딜 수 있는지 확인합니다.</small>
+</div>
+""", unsafe_allow_html=True)
 
 if st.session_state['model_poly'] is None:
-    st.warning("☝️ 먼저 위에서 '모델 훈련 (특성 공학 적용)' 버튼을 눌러주세요!")
+    st.warning("☝️ 먼저 Step 2에서 **[슈퍼 학습 블록 실행]** 버튼을 눌러주세요!")
 else:
-    st.markdown("드디어 태풍이 다가왔어요! 슈퍼 태풍 ‘울프(Wolf)’의 태풍 바람은 **80m/s**입니다. 돼지들의 집이 과연 무사할까요?")
-    
     # 돼지 집 데이터 로드
     pig_data_path = os.path.join(current_dir, 'pig_houses.csv')
     try:
@@ -222,7 +294,7 @@ else:
         st.subheader("🏘️ 아기 돼지 삼형제의 집")
         st.dataframe(df_pig)
         
-        if st.button("🏠 운명의 순간! 예측 결과 확인하기"):
+        if st.button("🚩 예측 블록 실행 (Run)"):
             
             # 예측 준비
             pig_input = df_pig[['density', 'thickness']].to_numpy()
@@ -232,7 +304,7 @@ else:
             predictions = st.session_state['model_poly'].predict(pig_poly)
             
             # 결과 표시
-            st.markdown("### 🌪️ 결과 발표")
+            st.markdown("### 🌪️ 시뮬레이션 결과")
             
             cols = st.columns(3)
             for i, (name, pred) in enumerate(zip(df_pig['name'], predictions)):
@@ -240,7 +312,7 @@ else:
                     result_card = st.container()
                     with result_card:
                         st.markdown(f"#### {name}")
-                        st.metric("예측된 버팀 강도", f"{pred:.1f} m/s")
+                        st.metric("예측된 버팀 강도", f"{pred:.5f} m/s")
                         
                         if pred >= 80:
                             st.success("✅ **안전함!**")
@@ -250,7 +322,7 @@ else:
                             st.markdown("늑대 바람(80m/s)에 날아가버렸어요.\n\n💨🏚️")
             
             # 소스 코드
-            with st.expander("📜 [소스 코드] 예측하기"):
+            with st.expander("🔍 블록 속 내용 보기 (Python 코드)"):
                 st.code("""
 # 돼지들의 집 데이터 준비
 df = pd.read_csv('pig_houses.csv')
