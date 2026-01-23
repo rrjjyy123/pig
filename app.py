@@ -219,7 +219,7 @@ else:
     try:
         df_pig = pd.read_csv(pig_data_path)
         
-        st.subheader("🏘️ 아기 돼지 삼형제의 집")
+        st.subheader("🏘️ 아기 돼지 삼형제 후손들의 집")
         st.dataframe(df_pig)
         
         if st.button("🏠 운명의 순간! 예측 결과 확인하기"):
@@ -303,3 +303,4 @@ with col_link1:
     st.link_button("📂 소스파일 다운 (구글 드라이브)", "https://drive.google.com/drive/folders/1ycRgMS3bZprEy85dsCpCOGNApoWN5TQ8")
 with col_link2:
     st.link_button("🐍 파이썬 코딩하러 가기 (구글 코랩)", "https://colab.research.google.com/drive/1Y86jVA0mWvn1db2OBYQCGSqyk2zUeq4c?usp=sharing")
+
