@@ -103,7 +103,6 @@ plt.show()
 
     # 3. 데이터 전처리 (Train/Test Split)
     st.markdown("### ✂️ 데이터 나누기 (훈련용 vs 시험용)")
-    st.markdown("AI에게 모든 데이터를 다 보여주면 안 돼요. 나중에 잘 배웠는지 시험 보기 위해 일부는 남겨둡니다.")
     
     material_full = df[['density', 'thickness']].to_numpy()
     material_strength = df['wind_resistance'].to_numpy()
@@ -303,4 +302,5 @@ with col_link1:
     st.link_button("📂 소스파일 다운 (구글 드라이브)", "https://drive.google.com/drive/folders/1ycRgMS3bZprEy85dsCpCOGNApoWN5TQ8")
 with col_link2:
     st.link_button("🐍 파이썬 코딩하러 가기 (구글 코랩)", "https://colab.research.google.com/drive/1Y86jVA0mWvn1db2OBYQCGSqyk2zUeq4c?usp=sharing")
+
 
